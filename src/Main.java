@@ -28,11 +28,14 @@ public class Main {
         ));
 
         System.out.println("Escolha a conta Desejada:");
+
         for (int i = 0; i < contas.size(); i++) {
             System.out.println((i + 1) + " - " + contas.get(i));
         }
 
-        Conta contaAtiva = contas.get(Integer.parseInt(scanner.nextLine()) - 1);
+        Conta conta = contas.get(Integer.parseInt(scanner.nextLine()) - 1);
+
+        System.out.println("Selecione uma das opções para continuarmos: \n");
 
         while (true) {
             System.out.println("""
@@ -48,18 +51,18 @@ public class Main {
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
-                case 1 -> contaAtiva.getDados();
-                case 2 -> System.out.println("Saldo Atual de: R$ " + contaAtiva.getSaldo());
-                case 3 -> System.out.println("Limite Atual de: R$ " + contaAtiva.getLimite());
+                case 1 -> conta.getDados();
+                case 2 -> System.out.println("Saldo Atual de: R$ " + conta.getSaldo());
+                case 3 -> System.out.println("Limite Atual de: R$ " + conta.getLimite());
                 case 4 -> {
                     System.out.print("Valor do saque: ");
-                    contaAtiva.sacar(Double.parseDouble(scanner.nextLine()));
+                    conta.sacar(Double.parseDouble(scanner.nextLine()));
                 }
                 case 5 -> {
                     System.out.print("Valor do depósito: ");
-                    contaAtiva.depositar(Double.parseDouble(scanner.nextLine()));
+                    conta.depositar(Double.parseDouble(scanner.nextLine()));
                 }
-                case 6 -> contaAtiva.mostrarExtrato();
+                case 6 -> conta.mostrarExtrato();
                 case 7 -> {
                     System.out.println("Encerrando...");
                     return;
