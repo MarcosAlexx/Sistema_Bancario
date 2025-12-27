@@ -8,27 +8,22 @@ public class ContaCorrente extends Conta {
             String endereco,
             String numeroDaConta,
             double limite,
-            int saldo
-    )  {
-        super(nome, cpf, endereco, "Corrente", numeroDaConta, limite, saldo);
-    }
-
-    public void getDados(){
-        System.out.println("Nome: "+ getNome());
-        System.out.println("Cpf: "+getCpf());
-        System.out.println("Endereço: "+getEndereco());
-        System.out.println("Tipo da models.Conta: "+getTipoDaConta());
-        System.out.println("Número da conta: "+getNumeroDaConta());
+            double saldo
+    ) {
+        super(nome, cpf, endereco, "Corrente", numeroDaConta, limite, (int) saldo);
     }
 
     @Override
     public void sacar(double valor) {
-        if (valor <= saldo + limite) {
-            saldo -= valor;
-            System.out.println("\nSaque realizado com sucesso! Você sacou: R$:" + valor );
-            System.out.println("Seu saldo atual é de: R$:" + saldo);
-        } else {
-            System.out.println("Saldo + limite insuficientes");
+        if (valor <= 0 || valor > saldo + limite) {
+            System.out.println("Saldo + limite insuficientes.");
+            return;
         }
+
+        saldo -= valor;
+        registrarSaque(valor);
+
+        System.out.println("Saque realizado: R$ " + valor);
+        System.out.println("Saldo atual: R$ " + saldo);
     }
 }
