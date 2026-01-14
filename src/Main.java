@@ -13,7 +13,7 @@ public class Main {
         contas.add(new ContaCorrente(
                 "Marcos",
                 "111.111.111-11",
-                "Rua das Laranjeiras",
+                "Rua dos testes",
                 "1234-0",
                 1000,
                 500
@@ -22,7 +22,7 @@ public class Main {
         contas.add(new ContaPoupanca(
                 "Marcos",
                 "111.111.111-11",
-                "Rua das Laranjeiras",
+                "Rua dos testes",
                 "5678-0",
                 800
         ));
