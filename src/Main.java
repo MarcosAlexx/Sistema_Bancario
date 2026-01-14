@@ -1,4 +1,5 @@
 import model.*;
+import service.ContaService;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,6 +10,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<Conta> contas = new ArrayList<>();
+        ContaService contaService = new ContaService();
 
         contas.add(new ContaCorrente(
                 "Marcos",
@@ -39,7 +41,7 @@ public class Main {
 
         while (true) {
             System.out.println("""
-                1 - Dados
+                \n1 - Dados
                 2 - Saldo
                 3 - Limite
                 4 - Sacar
@@ -51,7 +53,7 @@ public class Main {
             int opcao = Integer.parseInt(scanner.nextLine());
 
             switch (opcao) {
-                case 1 -> conta.getDados();
+                case 1 -> contaService.exibirDados(conta);
                 case 2 -> System.out.println("Saldo Atual de: R$ " + conta.getSaldo());
                 case 3 -> System.out.println("Limite Atual de: R$ " + conta.getLimite());
                 case 4 -> {
@@ -60,9 +62,10 @@ public class Main {
                 }
                 case 5 -> {
                     System.out.print("Valor do depósito: ");
-                    conta.depositar(Double.parseDouble(scanner.nextLine()));
+                    double valorDeposito = Double.parseDouble(scanner.nextLine());
+                    contaService.depositar(conta, valorDeposito);
                 }
-                case 6 -> conta.mostrarExtrato();
+                case 6 -> contaService.mostrarExtrato(conta);
                 case 7 -> {
                     System.out.println("Encerrando...");
                     return;
